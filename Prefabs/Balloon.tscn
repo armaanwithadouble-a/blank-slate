@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://clugnaaseflrc"]
+
+[ext_resource type="Script" uid="uid://c6cavc80lpdb1" path="res://Prefabs/balloon.gd" id="1_451g1"]
+[ext_resource type="AudioStream" uid="uid://en8kau1dalro" path="res://blankSlateDemoAssets/Sounds/balloon.wav" id="1_gy24t"]
+[ext_resource type="ArrayMesh" uid="uid://loibsl0thok0" path="res://blankSlateDemoAssets/Models/balloon.obj" id="2_451g1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jj3vs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gy24t"]
+albedo_color = Color(1, 0.103238, 0.0693007, 1)
+
+[node name="Balloon" type="Area3D"]
+script = ExtResource("1_451g1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("SphereShape3D_jj3vs")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_gy24t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+layers = 8
+mesh = ExtResource("2_451g1")
+surface_material_override/0 = SubResource("StandardMaterial3D_gy24t")

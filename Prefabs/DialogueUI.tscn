@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dipbqcc45aiwf"]
+
+[node name="DialogueUI" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Text" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 498.0
+offset_right = 968.0
+offset_bottom = 648.0
+text = "Tung Tung Tung Sahur! "
+
+[node name="OK" type="Button" parent="Panel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Voice" type="AudioStreamPlayer2D" parent="Panel"]

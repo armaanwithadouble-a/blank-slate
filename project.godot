@@ -15,6 +15,10 @@ run/main_scene="uid://72w56dbma6de"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/aspect="expand"
+
 [input]
 
 left_click={

@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://72w56dbma6de"]
+[gd_scene load_steps=16 format=4 uid="uid://72w56dbma6de"]
 
-[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_uxjsv"]
+[ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_6isyr"]
+[ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_6isyr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -76,40 +78,54 @@ environment = SubResource("Environment_feb5d")
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+layers = 2
 mesh = SubResource("PlaneMesh_80nbo")
 surface_material_override/0 = SubResource("StandardMaterial3D_80nbo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_mwb40")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_80nbo")]
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_uxjsv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="ramp" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, -2, 0, -3)
+layers = 2
 mesh = SubResource("ArrayMesh_80nbo")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="CSGBakedMeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ramp"]
+collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBakedMeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ramp/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_e2o6t")
 
-[node name="CSGBakedMeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="box" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 2, -2.75, 0.75, -4)
+layers = 2
 mesh = SubResource("ArrayMesh_feb5d")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="CSGBakedMeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="box"]
+collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBakedMeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="box/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
-[node name="CSGBakedMeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 8, 0, 0, 0, 1, 0, 4, 9.5)
+layers = 2
 mesh = SubResource("ArrayMesh_7jktm")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="CSGBakedMeshInstance3D3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="wall"]
+collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBakedMeshInstance3D3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_ryrav")
+
+[node name="EnergyCrystal" parent="." instance=ExtResource("2_6isyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.39828, 7.34228, -4.9258)
+
+[node name="Balloon" parent="." instance=ExtResource("3_6isyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0415, 8.16261, -1.05086)

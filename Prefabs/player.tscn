@@ -15,6 +15,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [sub_resource type="SphereShape3D" id="SphereShape3D_4flbx"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+collision_mask = 255
 script = ExtResource("1_4flbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -34,6 +35,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+collision_mask = 2
 shape = SubResource("SphereShape3D_4flbx")
 spring_length = 5.0
 margin = 1.0
@@ -47,12 +49,14 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 billboard = 2
+shaded = true
 texture_filter = 0
 texture = ExtResource("2_onrkg")
 
 [node name="DiveCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -1)
+collision_mask = 2
 
 [node name="Arrow" type="Sprite3D" parent="."]
 unique_name_in_owner = true
@@ -63,6 +67,7 @@ texture = ExtResource("3_i3pqv")
 [node name="ShadowCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 100, 0, 0, 0, 1, 0, 0, 0)
+collision_mask = 2
 
 [node name="Shadow" type="Sprite3D" parent="."]
 unique_name_in_owner = true

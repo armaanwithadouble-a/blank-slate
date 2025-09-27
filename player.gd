@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 @export_group("Movement")
 @export var move_speed := 30.0
-@export var acceleration := 30.0
+@export var acceleration := 40.0
 @export var rotation_speed := 20.0
 @export var jump_impulse := 20
 
@@ -158,6 +158,14 @@ func _physics_process(delta):
 		_shadow.global_position = _shadowcast.get_collision_point() + Vector3(0,0.05,0)
 	else:
 		_shadow.visible = false
+		
+	if is_on_floor() and move_direction != Vector3.ZERO:
+		_skin.position.y = abs(sin(Time.get_unix_time_from_system()*7))*0.1
+	else:
+		_skin.position.y = 0
 
 	_camera_pivot.global_position = lerp(_last_cam_pos, global_transform.origin + Vector3(0,0.5,0), 0.25)
 	_last_cam_pos = _camera_pivot.global_position
+
+func apply_impulse(amount):
+	velocity.y = amount
