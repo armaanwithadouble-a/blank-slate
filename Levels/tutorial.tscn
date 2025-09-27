@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=4 uid="uid://72w56dbma6de"]
 
-[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_uxjsv"]
-[ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_6isyr"]
-[ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_6isyr"]
+[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_0xeif"]
+[ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_gdvy0"]
+[ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_hga2d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -89,7 +89,7 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_mwb40")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_uxjsv")]
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_0xeif")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="ramp" type="MeshInstance3D" parent="."]
@@ -348,7 +348,7 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="crystal dash/box/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
-[node name="EnergyCrystal" parent="." instance=ExtResource("2_6isyr")]
+[node name="EnergyCrystal" parent="." instance=ExtResource("2_gdvy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 5.25, 47.5)
 
 [node name="crystal dash2" type="Node" parent="."]
@@ -400,5 +400,5 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="crystal dash2/box/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
-[node name="Balloon" parent="." instance=ExtResource("3_6isyr")]
+[node name="Balloon" parent="." instance=ExtResource("3_hga2d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 0, 135)
