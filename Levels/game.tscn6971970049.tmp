@@ -1,0 +1,135 @@
+[gd_scene load_steps=17 format=4 uid="uid://72w56dbma6de"]
+
+[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_uxjsv"]
+[ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_6isyr"]
+[ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_6isyr"]
+[ext_resource type="PackedScene" uid="uid://eims7t5kchuu" path="res://Prefabs/Elevator.tscn" id="4_5ubxa"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_e2o6t"]
+sky_material = SubResource("ProceduralSkyMaterial_80nbo")
+
+[sub_resource type="Environment" id="Environment_feb5d"]
+background_mode = 2
+sky = SubResource("Sky_e2o6t")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_80nbo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80nbo"]
+albedo_color = Color(0, 1, 0.462745, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mwb40"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_80nbo"]
+_surfaces = [{
+"aabb": AABB(0, 0, -1, 1, 1, 1),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AAAAAAAAgD+rqio+AACAPwAAgD8AAAA/AACAPwAAgD8AAAA/AACAPwAAAD8AAAAAAAAAPwAAAACrqqo+AAAAAAAAAD8AAAA/AACAPwAAAAAAAIA/AAAAAKuqKj4AAIA/q6oqPgAAgD+rqqo+AACAP6uqKj4AAAAAq6oqPgAAAAAAAAAAAAAAAKuqqj4AAIA/q6qqPgAAgD8AAAA/AACAP6uqqj4AAAAAq6qqPgAAAACrqio+"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC/AAAAAAAAgD8AAIC/AAAAAAAAAAAAAIC/AACAPwAAAAAAAIC/AAAAAAAAgD8AAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAIC/AACAPwAAAAAAAIC/AAAAAAAAgD8AAIC/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIC/AAAAAAAAAAAAAIC/AACAPwAAAAAAAIC/AACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAAD/f/////8AAP9//////wAA/3///////////wAA/7//////AAD/v/////8AAP+//38AAP//////fwAA//////9/AAD//////3//f////7//f/9/////v/9//3////+//7//v///////v/+///////+//7//////AAD/f/////8AAP9//////wAA/3///////38AAP//////fwAA//////9/AAD//////7//v///////v/+///////+//7//////")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e2o6t"]
+points = PackedVector3Array(1.00794, -0.007893, -1.00774, 0.0239036, 1.00784, 0.00773764, 0.0239036, 1.00784, -1.00774, 0, 0.00012025, -0.000175753, 1.00794, 0.0238237, 0.00773764, 0, 0.00012025, -0.999824, 0, 0.999922, -0.000175753, 1.00794, -0.007893, 0.00773764, 1.00794, 0.0238237, -1.00774, 0, 0.999922, -0.999824, 0.626992, 0.404822, -1.00774, 0.626992, 0.404822, 0.00773764)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_feb5d"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAAAvwAAAL8AAAA/AAAAvwAAAL8AAAC/AAAAvwAAAD8AAAC/AAAAPwAAAL8AAAC/AAAAvwAAAL8AAAC/AAAAvwAAAL8AAAA/AAAAvwAAAD8AAAC/AAAAvwAAAL8AAAC/AAAAPwAAAL8AAAC/AAAAvwAAAD8AAAC/AAAAvwAAAD8AAAA/AAAAvwAAAL8AAAA/AAAAvwAAAL8AAAA/AAAAvwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAvwAAAD8AAAA/AAAAvwAAAD8AAAC/AAAAvwAAAL8AAAA/AAAAPwAAAL8AAAA/AAAAPwAAAL8AAAC/AAAAPwAAAD8AAAA/AAAAPwAAAL8AAAA/AAAAvwAAAL8AAAA/AAAAPwAAAL8AAAC/AAAAPwAAAL8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAL8AAAC/AAAAPwAAAD8AAAC/AAAAvwAAAD8AAAC/AAAAvwAAAD8AAAC/AAAAPwAAAD8AAAC/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAC/AAAAPwAAAL8AAAC/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fc0e3"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7jktm"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAAAvwAAAL8AAAA/AAAAvwAAAL8AAAC/AAAAvwAAAD8AAAC/AAAAPwAAAL8AAAC/AAAAvwAAAL8AAAC/AAAAvwAAAL8AAAA/AAAAvwAAAD8AAAC/AAAAvwAAAL8AAAC/AAAAPwAAAL8AAAC/AAAAvwAAAD8AAAC/AAAAvwAAAD8AAAA/AAAAvwAAAL8AAAA/AAAAvwAAAL8AAAA/AAAAvwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAvwAAAD8AAAA/AAAAvwAAAD8AAAC/AAAAvwAAAL8AAAA/AAAAPwAAAL8AAAA/AAAAPwAAAL8AAAC/AAAAPwAAAD8AAAA/AAAAPwAAAL8AAAA/AAAAvwAAAL8AAAA/AAAAPwAAAL8AAAC/AAAAPwAAAL8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAL8AAAC/AAAAPwAAAD8AAAC/AAAAvwAAAD8AAAC/AAAAvwAAAD8AAAC/AAAAPwAAAD8AAAC/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAC/AAAAPwAAAL8AAAC/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ryrav"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="Game" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_feb5d")
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+layers = 2
+mesh = SubResource("PlaneMesh_80nbo")
+surface_material_override/0 = SubResource("StandardMaterial3D_80nbo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_mwb40")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_uxjsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ramp" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, -2, 0, -3)
+layers = 2
+mesh = SubResource("ArrayMesh_80nbo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ramp"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ramp/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_e2o6t")
+
+[node name="box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 2, -2.75, 0.75, -4)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="box"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="box/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 8, 0, 0, 0, 1, 0, 4, 9.5)
+layers = 2
+mesh = SubResource("ArrayMesh_7jktm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ryrav")
+
+[node name="EnergyCrystal" parent="." instance=ExtResource("2_6isyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.39828, 7.34228, -4.9258)
+
+[node name="Balloon" parent="." instance=ExtResource("3_6isyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0415, 8.16261, -1.05086)
+
+[node name="Elevator" parent="." instance=ExtResource("4_5ubxa")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.361619, 5, -14.7266)

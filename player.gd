@@ -17,6 +17,8 @@ var _can_double_jump := false
 var _can_dive := false
 var _can_bump := false
 var _is_diving := false
+var coyoteTime := 0.1
+var coyoteTimer := 0.1
 
 @onready var _camera_pivot: Node3D = %CameraPivot
 @onready var _camera: Camera3D = %Camera3D
@@ -40,6 +42,11 @@ var divePosF := preload("res://blankSlateDemoAssets/qoobTextures/front/dive.png"
 var divePosB := preload("res://blankSlateDemoAssets/qoobTextures/back/dive.png")
 var bumpPosF := preload("res://blankSlateDemoAssets/qoobTextures/front/bump.png")
 var bumpPosB := preload("res://blankSlateDemoAssets/qoobTextures/back/bump.png")
+
+@onready var jumpSound: AudioStreamPlayer3D = %Sounds.get_node("jump")
+@onready var doubleJumpSound: AudioStreamPlayer3D = %Sounds.get_node("doubleJump")
+@onready var bumpSound: AudioStreamPlayer3D = %Sounds.get_node("bump")
+@onready var diveSound: AudioStreamPlayer3D = %Sounds.get_node("dive")
 
 var movementState := "idle"
 var lastMovementState := "idle"
@@ -82,14 +89,19 @@ func _physics_process(delta):
 	if is_on_floor():
 		_can_double_jump = true
 		_can_dive = true
+		coyoteTimer = coyoteTime
+	else:
+		coyoteTimer = max(coyoteTimer-delta, 0.0)
 
 	if is_starting_jump:
-		if is_on_floor():
-			velocity.y += jump_impulse
+		if coyoteTimer > 0.0:
+			velocity.y = jump_impulse
+			jumpSound.play()
 		elif _can_double_jump:
 			_is_diving = false
 			velocity.y = jump_impulse
 			_can_double_jump = false
+			doubleJumpSound.play()
 
 	var is_starting_dive := Input.is_action_just_pressed("dive")
 
@@ -102,6 +114,7 @@ func _physics_process(delta):
 		cam_forward.y = 0.5
 		cam_forward = cam_forward.normalized()
 		velocity = cam_forward * 30
+		diveSound.play()
 
 	_divecast.target_position = _last_movement_direction.normalized() * 2.5
 
@@ -113,6 +126,7 @@ func _physics_process(delta):
 		var bumpVel = -_last_movement_direction.normalized() * 7
 		bumpVel.y = 25
 		velocity = bumpVel
+		bumpSound.play()
 
 	move_and_slide()
 		
@@ -166,6 +180,3 @@ func _physics_process(delta):
 
 	_camera_pivot.global_position = lerp(_last_cam_pos, global_transform.origin + Vector3(0,0.5,0), 0.25)
 	_last_cam_pos = _camera_pivot.global_position
-
-func apply_impulse(amount):
-	velocity.y = amount

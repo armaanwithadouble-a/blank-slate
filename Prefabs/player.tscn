@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt23fmgnisj7e"]
+[gd_scene load_steps=13 format=3 uid="uid://dt23fmgnisj7e"]
 
 [ext_resource type="Script" uid="uid://bcnewb00wkkqx" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://djqnqpo3uwyyw" path="res://blankSlateDemoAssets/qoobTextures/front/idle.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bm0m46t6i5fni" path="res://blankSlateDemoAssets/plrMovementTextures/arrow.png" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://3www5l8ahblc" path="res://blankSlateDemoAssets/plrMovementTextures/landing.png" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://bfuysg0esujnq" path="res://blankSlateDemoAssets/Sounds/jump.wav" id="5_juxdh"]
+[ext_resource type="AudioStream" uid="uid://cfw0ryhi4hsyl" path="res://blankSlateDemoAssets/Sounds/doubleJump.wav" id="6_4qbli"]
+[ext_resource type="AudioStream" uid="uid://gvu47hrydyo4" path="res://blankSlateDemoAssets/Sounds/bump.wav" id="7_08u7w"]
+[ext_resource type="AudioStream" uid="uid://dpe077vfbhd5r" path="res://blankSlateDemoAssets/Sounds/dive.wav" id="8_4qbli"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mwb40"]
 
@@ -75,3 +79,18 @@ transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 
 visible = false
 texture_filter = 0
 texture = ExtResource("4_hqtel")
+
+[node name="Sounds" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="jump" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("5_juxdh")
+
+[node name="doubleJump" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("6_4qbli")
+
+[node name="bump" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("7_08u7w")
+
+[node name="dive" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("8_4qbli")

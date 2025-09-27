@@ -19,7 +19,7 @@ func _on_body_entered(body):
 		body._can_double_jump = true
 		body._can_dive = true
 		clock = respawn_time
-		body.apply_impulse(25.0)
+		body.velocity.y = 25.0
 
 func _process(delta):
 	if clock > 0.0:
