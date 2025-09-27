@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://eims7t5kchuu"]
+
+[ext_resource type="Script" uid="uid://bq4pre7hrs8nv" path="res://elevator.gd" id="1_s0qbx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6xecj"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6xecj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xecj"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0.282353, 0.219608, 1)
+
+[node name="Elevator" type="Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+collision_layer = 8
+script = ExtResource("1_s0qbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CylinderShape3D_6xecj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+layers = 8
+mesh = SubResource("CylinderMesh_6xecj")
+surface_material_override/0 = SubResource("StandardMaterial3D_6xecj")
