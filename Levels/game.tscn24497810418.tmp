@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://72w56dbma6de"]
+[gd_scene load_steps=33 format=4 uid="uid://72w56dbma6de"]
 
 [ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://DefaultPrefabs/player.tscn" id="1_uxjsv"]
 [ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_6isyr"]
@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://du5hqv5uswtev" path="res://Prefabs/Checkpoint.tscn" id="8_xfsjo"]
 [ext_resource type="PackedScene" uid="uid://mefbrt3aqhyx" path="res://DefaultPrefabs/void.tscn" id="9_qe8hq"]
 [ext_resource type="PackedScene" uid="uid://c3i5s888f2skp" path="res://DefaultPrefabs/transition.tscn" id="10_fiyor"]
-[ext_resource type="PackedScene" uid="uid://8lj72mux6bde" path="res://DefaultPrefabs/BOSSBOSSBOSS.tscn" id="11_e33e4"]
+[ext_resource type="Script" uid="uid://dyib3lftntkhc" path="res://Levels/boss.gd" id="11_e33e4"]
+[ext_resource type="Texture2D" uid="uid://ggpvhoqauccf" path="res://blankSlateDemoAssets/synthTextures/strike.png" id="12_7apmo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -84,6 +85,24 @@ albedo_texture = ExtResource("6_jycte")
 uv1_offset = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 texture_filter = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_7apmo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yluu"]
+blend_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e33e4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_e33e4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e33e4"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 5.0
 
 [node name="Game" type="Node3D"]
 
@@ -182,4 +201,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1557, 0.125, -14.762)
 [node name="transition" parent="." instance=ExtResource("10_fiyor")]
 unique_name_in_owner = true
 
-[node name="boss" parent="." instance=ExtResource("11_e33e4")]
+[node name="boss" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+layers = 4
+mesh = SubResource("SphereMesh_7apmo")
+surface_material_override/0 = SubResource("StandardMaterial3D_1yluu")
+script = ExtResource("11_e33e4")
+
+[node name="lerpStrike" type="Area3D" parent="boss"]
+collision_layer = 16
+
+[node name="lerpStrike" type="CollisionShape3D" parent="boss/lerpStrike"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_e33e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="boss/lerpStrike/lerpStrike"]
+visible = false
+layers = 16
+mesh = SubResource("SphereMesh_e33e4")
+surface_material_override/0 = SubResource("StandardMaterial3D_e33e4")
+
+[node name="Sprite3D" type="Sprite3D" parent="boss"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+layers = 16
+billboard = 1
+texture_filter = 0
+texture = ExtResource("12_7apmo")

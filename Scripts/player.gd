@@ -187,7 +187,7 @@ func _physics_process(delta):
 	
 	if _attackcast.is_colliding():
 		var collider = _attackcast.get_collider()
-		if collider.has_method("take_damage"):
+		if collider.has_method("take_damage") and collider.isStunned():
 			collider.take_damage(1)
 			velocity += (global_transform.origin - collider.global_transform.origin).normalized()*10 + Vector3.UP*2
 

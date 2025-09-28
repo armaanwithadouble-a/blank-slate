@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4esa572hgjpc"]
+
+[ext_resource type="Script" uid="uid://dir374qiwjm6w" path="res://Prefabs/pillar_strike.gd" id="1_xhbnj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e33e4"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e33e4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7apmo"]
+transparency = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
+
+[node name="pillarStrike" type="Area3D"]
+collision_layer = 16
+script = ExtResource("1_xhbnj")
+
+[node name="lerpStrike" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("CylinderShape3D_e33e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lerpStrike"]
+transform = Transform3D(1, 0, 0, 0, 99, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_e33e4")
+surface_material_override/0 = SubResource("StandardMaterial3D_7apmo")
