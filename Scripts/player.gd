@@ -35,6 +35,8 @@ var iFrameClock := 0.0
 @onready var _shadowcast: RayCast3D = %ShadowCast
 @onready var _shadow: Sprite3D = %Shadow
 @onready var _hearts: HBoxContainer = %Health.get_node("HBoxContainer")
+@onready var heart_nodes: Array = _hearts.get_children()
+@onready var _attackcast: RayCast3D = %AttackCast
 
 var idlePosF := preload("res://blankSlateDemoAssets/qoobTextures/front/idle.png")
 var idlePosB := preload("res://blankSlateDemoAssets/qoobTextures/back/idle.png")
@@ -55,7 +57,7 @@ var bumpPosB := preload("res://blankSlateDemoAssets/qoobTextures/back/bump.png")
 @onready var doubleJumpSound: AudioStreamPlayer3D = %Sounds.get_node("doubleJump")
 @onready var bumpSound: AudioStreamPlayer3D = %Sounds.get_node("bump")
 @onready var diveSound: AudioStreamPlayer3D = %Sounds.get_node("dive")
-@onready var heart_nodes: Array = _hearts.get_children()
+@onready var hurtSound: AudioStreamPlayer3D = %Sounds.get_node("hurt")
 
 var movementState := "idle"
 var lastMovementState := "idle"
@@ -76,7 +78,7 @@ func _unhandled_input(event):
 		_camera_input_direction = event.screen_relative * mouse_sensitivity
 
 func _update_hearts():
-	var hp := int(clamp(health, 0.0, max_health))
+	var hp := int(clamp(health, 0.0, float(max_health)))
 	for i in heart_nodes.size():
 		heart_nodes[i].visible = (i<health)
 
@@ -93,6 +95,7 @@ func take_damage(dmg, kb = Vector3.ZERO):
 		velocity += kb
 	if health <= 0.0:
 		die()
+	hurtSound.play()
 
 func heal():
 	var before := health
@@ -101,8 +104,21 @@ func heal():
 		_update_hearts()
 
 func die():
-	print("u die")
+	var transition = %transition
+	transition.play_out()
+	
+	await get_tree().create_timer(0.75).timeout
+	
+	healthRegenClock = regen_delay
+	if CheckpointService.has_active():
+		global_transform.origin = CheckpointService.respawn_position()
 	velocity = Vector3.ZERO
+	health = max_health
+	_update_hearts()
+	
+	await get_tree().create_timer(0.25).timeout
+	
+	transition.play_in()
 
 func _ready():
 	_update_hearts()
@@ -168,6 +184,12 @@ func _physics_process(delta):
 		bumpVel.y = 25
 		velocity = bumpVel
 		bumpSound.play()
+	
+	if _attackcast.is_colliding():
+		var collider = _attackcast.get_collider()
+		if collider.has_method("take_damage"):
+			collider.take_damage(1)
+			velocity += (global_transform.origin - collider.global_transform.origin).normalized()*10 + Vector3.UP*2
 
 	move_and_slide()
 		
@@ -234,7 +256,7 @@ func _physics_process(delta):
 			if health != before:
 				_update_hearts()
 	
-	if iFrameClock > 0.0 and (int(Time.get_unix_time_from_system()) / 80) % 2 == 0:
+	if iFrameClock > 0.0 and int(Time.get_ticks_msec() / 150) % 2 == 0:
 		_skin.modulate.a = 0.6
 	else:
 		_skin.modulate.a = 1.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ccqgw0nb8m5ba"]
 
-[ext_resource type="Script" uid="uid://bl2cjwqu73udb" path="res://energy_crystal.gd" id="1_7uttc"]
+[ext_resource type="Script" uid="uid://bl2cjwqu73udb" path="res://Scripts/energy_crystal.gd" id="1_7uttc"]
 [ext_resource type="AudioStream" uid="uid://bpfej5viidan7" path="res://blankSlateDemoAssets/Sounds/energyCrystal.wav" id="2_7uttc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gtvpc"]

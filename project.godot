@@ -13,7 +13,11 @@ config_version=5
 config/name="superstar"
 run/main_scene="uid://72w56dbma6de"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://blankSlateDemoAssets/MiscTextures/icon.svg"
+
+[autoload]
+
+CheckpointService="*res://Scripts/CheckpointService.gd"
 
 [display]
 
