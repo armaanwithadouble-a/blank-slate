@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgxcbaglfab7h"]
+
+[ext_resource type="Texture2D" uid="uid://cpcjrccux5yto" path="res://blankSlateDemoAssets/plrMovementTextures/heart.png" id="1_1j1y8"]
+
+[node name="Health" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 5.0
+offset_right = 412.0
+offset_bottom = 75.0
+theme_override_constants/separation = 8
+
+[node name="Heart1" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1j1y8")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1j1y8")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1j1y8")
+expand_mode = 2
+
+[node name="Heart4" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1j1y8")
+expand_mode = 2
+
+[node name="Heart5" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1j1y8")
+expand_mode = 2

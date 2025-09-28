@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://72w56dbma6de"]
+[gd_scene load_steps=21 format=4 uid="uid://72w56dbma6de"]
 
 [ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_uxjsv"]
 [ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_6isyr"]
 [ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_6isyr"]
 [ext_resource type="PackedScene" uid="uid://eims7t5kchuu" path="res://Prefabs/Elevator.tscn" id="4_5ubxa"]
+[ext_resource type="PackedScene" uid="uid://cgxcbaglfab7h" path="res://DefaultPrefabs/Health.tscn" id="5_uda3f"]
+[ext_resource type="Texture2D" uid="uid://c7epsbxcleq6l" path="res://blankSlateDemoAssets/MiscTextures/devastation.webp" id="6_jycte"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -67,6 +69,15 @@ _surfaces = [{
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ryrav"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uda3f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ev4ff"]
+albedo_texture = ExtResource("6_jycte")
+uv1_scale = Vector3(2, 2, 2)
+uv1_offset = Vector3(1, 1, 1)
+uv1_triplanar = true
+texture_filter = 0
 
 [node name="Game" type="Node3D"]
 
@@ -134,3 +145,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0415, 8.16261, -1.05086)
 [node name="Elevator" parent="." instance=ExtResource("4_5ubxa")]
 transform = Transform3D(5, 0, 0, 0, 4.78526, 1.44959, 0, -1.44959, 4.78526, -0.361619, 5.9383, -13.8593)
 force = 2.0
+
+[node name="Health" parent="." instance=ExtResource("5_uda3f")]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.5, -7)
+layers = 4
+mesh = SubResource("BoxMesh_uda3f")
+surface_material_override/0 = SubResource("StandardMaterial3D_ev4ff")
