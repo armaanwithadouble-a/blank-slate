@@ -12,7 +12,7 @@ extends CharacterBody3D
 @export var iFrameTime := 0.5
 @export var health := 5.0
 @export var regen_delay := 2
-@export var regen_rate := 1.0
+@export var regen_rate := 30.0
 
 var _camera_input_direction := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK

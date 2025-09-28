@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cuo14jp7dr5wr"]
+[gd_scene load_steps=44 format=3 uid="uid://cuo14jp7dr5wr"]
 
 [ext_resource type="Texture2D" uid="uid://ca1ue5ap7ejsm" path="res://blankSlateDemoAssets/MiscTextures/floor for catle lvl.png" id="1_a4or1"]
 [ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://DefaultPrefabs/player.tscn" id="1_mlv2m"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bmjrhsies3q0l" path="res://blankSlateDemoAssets/MiscTextures/brick wall.webp" id="7_wya21"]
 [ext_resource type="Texture2D" uid="uid://cdewvk6m6yj60" path="res://blankSlateDemoAssets/MiscTextures/Gates.webp" id="13_tm5b3"]
 [ext_resource type="PackedScene" uid="uid://c3i5s888f2skp" path="res://DefaultPrefabs/transition.tscn" id="14_gs5fi"]
+[ext_resource type="PackedScene" uid="uid://8lj72mux6bde" path="res://DefaultPrefabs/BOSSBOSSBOSS.tscn" id="15_3quce"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wya21"]
 sky_top_color = Color(3.4357727, 0, 4.2840943, 1)
@@ -631,3 +632,8 @@ texture = ExtResource("13_tm5b3")
 
 [node name="transition" parent="." instance=ExtResource("14_gs5fi")]
 unique_name_in_owner = true
+
+[node name="boss" parent="." instance=ExtResource("15_3quce")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.2741871, -509.5, 3.8341684)
+asr_min_y = -540.0
+asr_max_y = -520.0
