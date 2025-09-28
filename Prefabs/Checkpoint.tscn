@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://du5hqv5uswtev"]
+
+[ext_resource type="Texture2D" uid="uid://bhyk3t8cfcl1d" path="res://blankSlateDemoAssets/plrMovementTextures/spawn.webp" id="1_hcod5"]
+[ext_resource type="Script" uid="uid://bxcaf7ahffrmt" path="res://Prefabs/checkpoint.gd" id="1_vjicr"]
+[ext_resource type="AudioStream" uid="uid://dwyvweax6geh0" path="res://blankSlateDemoAssets/Sounds/checkpoint.wav" id="3_7gn77"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u4a27"]
+radius = 3.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_hcod5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4a27"]
+resource_local_to_scene = true
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="Curve" id="Curve_u4a27"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hcod5"]
+curve = SubResource("Curve_u4a27")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u4a27"]
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 8.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -10, 0)
+scale_min = 0.1
+scale_max = 0.15
+scale_curve = SubResource("CurveTexture_hcod5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcod5"]
+transparency = 1
+albedo_texture = ExtResource("1_hcod5")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_u4a27"]
+material = SubResource("StandardMaterial3D_hcod5")
+
+[node name="Checkpoint" type="Area3D"]
+script = ExtResource("1_vjicr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_u4a27")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.25, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_hcod5")
+surface_material_override/0 = SubResource("StandardMaterial3D_u4a27")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_u4a27")
+draw_pass_1 = SubResource("QuadMesh_u4a27")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_7gn77")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+unique_name_in_owner = true

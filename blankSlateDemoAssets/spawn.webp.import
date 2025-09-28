@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwgt6nqx8u6ir"
-path="res://.godot/imported/transition.png-0650cde442407ecd4d81b491697a011b.ctex"
+uid="uid://5gnvf2h8u8e"
+path="res://.godot/imported/spawn.webp-8b73853f14b84e00ba15d725a44db6c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blankSlateDemoAssets/plrMovementTextures/transition.png"
-dest_files=["res://.godot/imported/transition.png-0650cde442407ecd4d81b491697a011b.ctex"]
+source_file="res://blankSlateDemoAssets/spawn.webp"
+dest_files=["res://.godot/imported/spawn.webp-8b73853f14b84e00ba15d725a44db6c0.ctex"]
 
 [params]
 

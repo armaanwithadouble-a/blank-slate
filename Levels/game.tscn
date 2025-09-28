@@ -1,12 +1,16 @@
-[gd_scene load_steps=23 format=4 uid="uid://72w56dbma6de"]
+[gd_scene load_steps=31 format=4 uid="uid://72w56dbma6de"]
 
-[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_uxjsv"]
+[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://DefaultPrefabs/player.tscn" id="1_uxjsv"]
 [ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_6isyr"]
 [ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_6isyr"]
 [ext_resource type="PackedScene" uid="uid://eims7t5kchuu" path="res://Prefabs/Elevator.tscn" id="4_5ubxa"]
 [ext_resource type="PackedScene" uid="uid://cgxcbaglfab7h" path="res://DefaultPrefabs/Health.tscn" id="5_uda3f"]
-[ext_resource type="Script" uid="uid://lmgj3ii67wsh" path="res://Levels/cat.gd" id="6_ev4ff"]
+[ext_resource type="Script" uid="uid://lmgj3ii67wsh" path="res://Scripts/cat.gd" id="6_ev4ff"]
 [ext_resource type="Texture2D" uid="uid://c7epsbxcleq6l" path="res://blankSlateDemoAssets/MiscTextures/devastation.webp" id="6_jycte"]
+[ext_resource type="PackedScene" uid="uid://du5hqv5uswtev" path="res://Prefabs/Checkpoint.tscn" id="8_xfsjo"]
+[ext_resource type="PackedScene" uid="uid://mefbrt3aqhyx" path="res://DefaultPrefabs/void.tscn" id="9_qe8hq"]
+[ext_resource type="PackedScene" uid="uid://c3i5s888f2skp" path="res://DefaultPrefabs/transition.tscn" id="10_fiyor"]
+[ext_resource type="Script" uid="uid://dyib3lftntkhc" path="res://Levels/boss.gd" id="11_e33e4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -80,6 +84,19 @@ albedo_texture = ExtResource("6_jycte")
 uv1_offset = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 texture_filter = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_fiyor"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e33e4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_e33e4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e33e4"]
+blend_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 5.0
 
 [node name="Game" type="Node3D"]
 
@@ -163,3 +180,35 @@ layers = 4
 mesh = SubResource("BoxMesh_uda3f")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ev4ff")
+
+[node name="Checkpoint" parent="." instance=ExtResource("8_xfsjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.389698, 0.125, 1.40289)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("8_xfsjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.33778, 0.125, -10.1257)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("8_xfsjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1557, 0.125, -14.762)
+
+[node name="void" parent="." instance=ExtResource("9_qe8hq")]
+
+[node name="transition" parent="." instance=ExtResource("10_fiyor")]
+unique_name_in_owner = true
+
+[node name="boss" type="MeshInstance3D" parent="."]
+layers = 4
+mesh = SubResource("SphereMesh_fiyor")
+script = ExtResource("11_e33e4")
+
+[node name="lerpStrike" type="Area3D" parent="boss"]
+collision_layer = 16
+
+[node name="lerpStrike" type="CollisionShape3D" parent="boss/lerpStrike"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_e33e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="boss/lerpStrike/lerpStrike"]
+visible = false
+layers = 16
+mesh = SubResource("SphereMesh_e33e4")
+surface_material_override/0 = SubResource("StandardMaterial3D_e33e4")
