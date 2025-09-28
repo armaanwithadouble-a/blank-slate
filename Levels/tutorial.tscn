@@ -1,12 +1,17 @@
-[gd_scene load_steps=23 format=4 uid="uid://72w56dbma6de"]
+[gd_scene load_steps=56 format=4 uid="uid://72w56dbma6de"]
 
-[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_0xeif"]
+[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://DefaultPrefabs/player.tscn" id="1_0xeif"]
 [ext_resource type="Texture2D" uid="uid://c1aftihaihwpw" path="res://blankSlateDemoAssets/MiscTextures/floor for totorial.webp" id="2_e312d"]
 [ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_gdvy0"]
 [ext_resource type="Texture2D" uid="uid://d1dtkl0l5p341" path="res://blankSlateDemoAssets/MiscTextures/walls for toutorial.webp" id="2_mscth"]
 [ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_hga2d"]
 [ext_resource type="PackedScene" uid="uid://eims7t5kchuu" path="res://Prefabs/Elevator.tscn" id="4_gdvy0"]
 [ext_resource type="PackedScene" uid="uid://cgxcbaglfab7h" path="res://DefaultPrefabs/Health.tscn" id="5_hga2d"]
+[ext_resource type="Texture2D" uid="uid://b665rxveceg71" path="res://blankSlateDemoAssets/MiscTextures/platforms in castle.webp" id="7_3hhjp"]
+[ext_resource type="PackedScene" uid="uid://c3i5s888f2skp" path="res://DefaultPrefabs/transition.tscn" id="8_avars"]
+[ext_resource type="PackedScene" uid="uid://mefbrt3aqhyx" path="res://DefaultPrefabs/void.tscn" id="9_3hhjp"]
+[ext_resource type="PackedScene" uid="uid://du5hqv5uswtev" path="res://Prefabs/Checkpoint.tscn" id="10_to5w2"]
+[ext_resource type="Script" uid="uid://b0xxmm32jdbij" path="res://Levels/area_3d.gd" id="12_to5w2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
 sky_top_color = Color(0.46583652, 0.5400749, 0.6391363, 1)
@@ -74,17 +79,115 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ryrav"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to5w2"]
+albedo_texture = ExtResource("7_3hhjp")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hga2d"]
 albedo_color = Color(0, 1, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gdvy0"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wqju"]
+albedo_texture = ExtResource("7_3hhjp")
 
-[sub_resource type="SphereMesh" id="SphereMesh_hga2d"]
-material = SubResource("StandardMaterial3D_gdvy0")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tnf1"]
+albedo_texture = ExtResource("7_3hhjp")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hga2d"]
-points = PackedVector3Array(0.4578707, 0.19807906, 0.01578243, -0.48873997, -0.09168735, -0.04518683, -0.47150937, -0.1370268, -0.090701535, 0.07635914, -0.33327514, 0.36417928, 0.13656896, -0.33242497, -0.3469059, -0.15161654, 0.47198188, -0.060245913, -0.10534735, 0.21193622, 0.43966028, -0.045016855, 0.19809827, -0.4564163, 0.4090765, -0.15116782, 0.2425159, -0.27137637, -0.37776056, 0.18187061, 0.41147974, -0.07598096, -0.27324012, 0.19819722, -0.4561612, -0.04493101, -0.24064063, -0.33167413, -0.2857683, 0.22713655, 0.2567203, 0.36304116, 0.22752243, 0.42360392, -0.13548777, -0.37899047, 0.060702223, 0.31946206, -0.40674683, 0.18104935, -0.22569102, -0.014631338, -0.09176946, 0.49022886, -0.37785473, 0.30279276, 0.121712334, 0.046232317, 0.45601088, 0.19818504, -0.22746402, -0.060786348, -0.44034815, 0.22845526, 0.06072284, -0.43988743, -0.09113759, -0.48924586, -0.045174047, 0.44186506, -0.22821625, -0.044958085, 0.31717873, 0.24121423, -0.30081153, -0.044848714, 0.39473665, -0.30295488, -0.316348, -0.19622163, 0.33255145, 0.19844188, -0.03042933, 0.45723665, 0.061471395, -0.1522456, -0.47130713, 0.36308852, 0.25670764, 0.22707908, 0.15213433, -0.43948856, 0.18237916, -0.21072462, 0.36227608, 0.2722302)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_so4kt"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_td8ta"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4d1rn"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0t66"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7ekk"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3l68j"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5y3ho"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_desr6"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_maxpf"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygkl2"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kmhi"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbvdo"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mydkt"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0lrx"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kx2g6"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8sr5"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3p1xt"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu5na"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fyol"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cfr2"]
+albedo_texture = ExtResource("7_3hhjp")
+
+[sub_resource type="TextMesh" id="TextMesh_3hhjp"]
+text = "Press Space To Jump"
+font_size = 120
+
+[sub_resource type="TextMesh" id="TextMesh_to5w2"]
+text = "Double Press Space
+To Double Jump"
+font_size = 120
+
+[sub_resource type="TextMesh" id="TextMesh_4wqju"]
+text = "Press E to Dash"
+font_size = 120
+
+[sub_resource type="TextMesh" id="TextMesh_0tnf1"]
+text = "The Red Cube Lets you 
+Jump and Dash
+Againg"
+font_size = 120
+
+[sub_resource type="TextMesh" id="TextMesh_so4kt"]
+text = "The Red Ballon Sends
+You up and lets you Jump
+Again"
+font_size = 120
+
+[sub_resource type="TextMesh" id="TextMesh_td8ta"]
+text = "The Yellow Tube
+Sends You Flyingd"
+font_size = 120
+
+[sub_resource type="TextMesh" id="TextMesh_4d1rn"]
+text = "Get to the Top
+To Move on"
+font_size = 120
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0t66"]
+size = Vector3(1000, 1, 1000)
 
 [node name="Game" type="Node3D"]
 
@@ -348,6 +451,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 207.554, 6, 470)
 layers = 2
+material_override = SubResource("StandardMaterial3D_to5w2")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -361,6 +465,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform2" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 177.46211, 18.124928, 470)
 layers = 2
+material_override = SubResource("StandardMaterial3D_4wqju")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -374,6 +479,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform3" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 184.19049, 6, 514.89185)
 layers = 2
+material_override = SubResource("StandardMaterial3D_0tnf1")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -387,6 +493,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform4" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 117.564835, 13.280041, 519.9575)
 layers = 2
+material_override = SubResource("StandardMaterial3D_so4kt")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -400,6 +507,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform5" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 150.10086, 30.080189, 448.27048)
 layers = 2
+material_override = SubResource("StandardMaterial3D_td8ta")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -413,6 +521,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform6" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 228.77417, 2.4935913, 405.05823)
 layers = 2
+material_override = SubResource("StandardMaterial3D_4d1rn")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -426,6 +535,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform7" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 234.03587, 11.912338, 522.83856)
 layers = 2
+material_override = SubResource("StandardMaterial3D_s0t66")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -439,6 +549,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform8" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 137.81683, 17.843723, 397.5871)
 layers = 2
+material_override = SubResource("StandardMaterial3D_p7ekk")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -452,6 +563,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform9" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 164.87653, 42.119736, 416.6766)
 layers = 2
+material_override = SubResource("StandardMaterial3D_3l68j")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -465,6 +577,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform10" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 189.0092, 52.393394, 434.83844)
 layers = 2
+material_override = SubResource("StandardMaterial3D_5y3ho")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -478,6 +591,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform11" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 244.28166, 25.661533, 496.8251)
 layers = 2
+material_override = SubResource("StandardMaterial3D_desr6")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -491,6 +605,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform12" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 132.65228, 36.576454, 479.9548)
 layers = 2
+material_override = SubResource("StandardMaterial3D_maxpf")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -504,6 +619,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform13" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 178.1402, 69.64565, 486.59283)
 layers = 2
+material_override = SubResource("StandardMaterial3D_ygkl2")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -517,6 +633,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform14" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 223.69835, 76.476974, 474.1171)
 layers = 2
+material_override = SubResource("StandardMaterial3D_2kmhi")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -530,6 +647,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform15" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 216.52184, 28.666687, 434.83844)
 layers = 2
+material_override = SubResource("StandardMaterial3D_jbvdo")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -543,6 +661,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform16" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 189.0092, 37.461674, 500.27386)
 layers = 2
+material_override = SubResource("StandardMaterial3D_mydkt")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -556,6 +675,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform17" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 205.27847, 86.56641, 494.72556)
 layers = 2
+material_override = SubResource("StandardMaterial3D_m0lrx")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -569,6 +689,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform18" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 189.0092, 22.660603, 410.0294)
 layers = 2
+material_override = SubResource("StandardMaterial3D_kx2g6")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -582,6 +703,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform19" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 177.84367, 37.461674, 450.68796)
 layers = 2
+material_override = SubResource("StandardMaterial3D_l8sr5")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -595,6 +717,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform20" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 189.0092, 59.482212, 466.71802)
 layers = 2
+material_override = SubResource("StandardMaterial3D_3p1xt")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -608,6 +731,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform21" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 189.0092, 14.5141945, 494.6381)
 layers = 2
+material_override = SubResource("StandardMaterial3D_bu5na")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -621,6 +745,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform22" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 235.73528, 13.769218, 453.30893)
 layers = 2
+material_override = SubResource("StandardMaterial3D_8fyol")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -634,6 +759,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="boss platform23" type="MeshInstance3D" parent="Boss Arena"]
 transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 134.40947, 16.776594, 480.51398)
 layers = 2
+material_override = SubResource("StandardMaterial3D_0cfr2")
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
@@ -644,15 +770,79 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform23/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
+[node name="Elevator" parent="Boss Arena" instance=ExtResource("4_gdvy0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 204.45305, 94.06641, 495.06842)
+force = 1000.0
+
 [node name="Health" parent="." instance=ExtResource("5_hga2d")]
 unique_name_in_owner = true
 
-[node name="Dumy_Dummy" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.5, 0, 0, 0, 7, 0, 0, 0, 3.5, 175, 2.825, 290)
-layers = 2
-mesh = SubResource("SphereMesh_hga2d")
+[node name="transition" parent="." instance=ExtResource("8_avars")]
+unique_name_in_owner = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Dumy_Dummy"]
+[node name="void" parent="." instance=ExtResource("9_3hhjp")]
+unique_name_in_owner = true
+transform = Transform3D(99999, 0, 0, 0, 2, 0, 0, 0, 99999, 6.645502, -24.715286, -0.07681841)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dumy_Dummy/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_hga2d")
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("10_to5w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028909445, 0.06908989, 0.1972487)
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("10_to5w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.029, 0.375, 0)
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("10_to5w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.851, 0.375, 0)
+
+[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("10_to5w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 0.375, 0)
+
+[node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("10_to5w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 0.323, 80.626)
+
+[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("10_to5w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 0.375, 181.379)
+
+[node name="Checkpoint7" parent="Checkpoints" instance=ExtResource("10_to5w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 0.375, 260.844)
+
+[node name="Checkpoint8" parent="Checkpoints" instance=ExtResource("10_to5w2")]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 1, 175, 0.375, 367.145)
+
+[node name="Text stuff" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Text stuff"]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 14.2596035, 2.357862, 0)
+mesh = SubResource("TextMesh_3hhjp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Text stuff"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 65.03233, 1.5070639, 0)
+mesh = SubResource("TextMesh_to5w2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Text stuff"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 108.5795, 1.5726633, 0)
+mesh = SubResource("TextMesh_4wqju")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Text stuff"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 175, 1.7596323, 15.678968)
+mesh = SubResource("TextMesh_0tnf1")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Text stuff"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 175, 2.3288612, 100.17221)
+mesh = SubResource("TextMesh_so4kt")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Text stuff"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 175, 1.918006, 183.73676)
+mesh = SubResource("TextMesh_td8ta")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Text stuff"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 175, 3.1457615, 328.2481)
+mesh = SubResource("TextMesh_4d1rn")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195.35623, 117.34563, 514.7935)
+script = ExtResource("12_to5w2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_s0t66")

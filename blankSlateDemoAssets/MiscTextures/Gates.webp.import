@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jowyinama7sn"
-path.s3tc="res://.godot/imported/wall.png-02e44225f6807927fb51c8d7093c7dd1.s3tc.ctex"
+uid="uid://cdewvk6m6yj60"
+path.s3tc="res://.godot/imported/Gates.webp-5f503ceee6891445e0e2701f38d369a6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Levels/wall.png"
-dest_files=["res://.godot/imported/wall.png-02e44225f6807927fb51c8d7093c7dd1.s3tc.ctex"]
+source_file="res://blankSlateDemoAssets/MiscTextures/Gates.webp"
+dest_files=["res://.godot/imported/Gates.webp-5f503ceee6891445e0e2701f38d369a6.s3tc.ctex"]
 
 [params]
 

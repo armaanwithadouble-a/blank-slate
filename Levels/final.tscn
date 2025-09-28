@@ -1,7 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://cuo14jp7dr5wr"]
+[gd_scene load_steps=43 format=3 uid="uid://cuo14jp7dr5wr"]
 
 [ext_resource type="Texture2D" uid="uid://ca1ue5ap7ejsm" path="res://blankSlateDemoAssets/MiscTextures/floor for catle lvl.png" id="1_a4or1"]
-[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_mlv2m"]
+[ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://DefaultPrefabs/player.tscn" id="1_mlv2m"]
 [ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_jhhr8"]
 [ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_8ve3c"]
 [ext_resource type="Texture2D" uid="uid://bara7hm37jlsy" path="res://blankSlateDemoAssets/MiscTextures/castle inside wall 1.webp" id="3_jhhr8"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cgxcbaglfab7h" path="res://DefaultPrefabs/Health.tscn" id="5_wya21"]
 [ext_resource type="Texture2D" uid="uid://b665rxveceg71" path="res://blankSlateDemoAssets/MiscTextures/platforms in castle.webp" id="7_a4or1"]
 [ext_resource type="Texture2D" uid="uid://bmjrhsies3q0l" path="res://blankSlateDemoAssets/MiscTextures/brick wall.webp" id="7_wya21"]
+[ext_resource type="Texture2D" uid="uid://cdewvk6m6yj60" path="res://blankSlateDemoAssets/MiscTextures/Gates.webp" id="13_tm5b3"]
+[ext_resource type="PackedScene" uid="uid://c3i5s888f2skp" path="res://DefaultPrefabs/transition.tscn" id="14_gs5fi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wya21"]
 sky_top_color = Color(3.4357727, 0, 4.2840943, 1)
@@ -608,3 +610,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.514246, -521.05426, 12.30
 transform = Transform3D(2000, 0, 0, 0, 1, 0, 0, 0, 2000, 0, 0, 0)
 layers = 2
 mesh = SubResource("PlaneMesh_gs5fi")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Gates" type="Sprite3D" parent="Node"]
+transform = Transform3D(-250.38963, 0, 0, 0, 100, 0, 0, 0, 2000, 0, 600, -2000.9504)
+texture = ExtResource("13_tm5b3")
+
+[node name="Gates2" type="Sprite3D" parent="Node"]
+transform = Transform3D(-250.38963, 0, 0, 0, 100, 0, 0, 0, 2000, 0, 600, 2000.95)
+texture = ExtResource("13_tm5b3")
+
+[node name="Gates3" type="Sprite3D" parent="Node"]
+transform = Transform3D(1.0944878e-05, 8.742278e-06, 2000, 0, 100, -0.00017484555, 250.38963, -3.8213708e-13, -8.742278e-05, 2000, 600, 0)
+texture = ExtResource("13_tm5b3")
+
+[node name="Gates4" type="Sprite3D" parent="Node"]
+transform = Transform3D(1.0944878e-05, 8.742278e-06, 2000, 0, 100, -0.00017484555, 250.38963, -3.8213708e-13, -8.742278e-05, -2000, 600, 0)
+texture = ExtResource("13_tm5b3")
+
+[node name="transition" parent="." instance=ExtResource("14_gs5fi")]
+unique_name_in_owner = true
