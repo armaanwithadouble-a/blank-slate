@@ -8,6 +8,11 @@ extends CharacterBody3D
 @export var acceleration := 60.0
 @export var rotation_speed := 20.0
 @export var jump_impulse := 20
+@export var max_health := 5
+@export var iFrameTime := 0.5
+@export var health := 5.0
+@export var regen_delay := 2
+@export var regen_rate := 1.0
 
 var _camera_input_direction := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK
@@ -19,6 +24,8 @@ var _can_bump := false
 var _is_diving := false
 var coyoteTime := 0.1
 var coyoteTimer := 0.1
+var healthRegenClock := 0.0
+var iFrameClock := 0.0
 
 @onready var _camera_pivot: Node3D = %CameraPivot
 @onready var _camera: Camera3D = %Camera3D
@@ -27,6 +34,7 @@ var coyoteTimer := 0.1
 @onready var _arrow: Sprite3D = %Arrow
 @onready var _shadowcast: RayCast3D = %ShadowCast
 @onready var _shadow: Sprite3D = %Shadow
+@onready var _hearts: HBoxContainer = %Health.get_node("HBoxContainer")
 
 var idlePosF := preload("res://blankSlateDemoAssets/qoobTextures/front/idle.png")
 var idlePosB := preload("res://blankSlateDemoAssets/qoobTextures/back/idle.png")
@@ -47,6 +55,7 @@ var bumpPosB := preload("res://blankSlateDemoAssets/qoobTextures/back/bump.png")
 @onready var doubleJumpSound: AudioStreamPlayer3D = %Sounds.get_node("doubleJump")
 @onready var bumpSound: AudioStreamPlayer3D = %Sounds.get_node("bump")
 @onready var diveSound: AudioStreamPlayer3D = %Sounds.get_node("dive")
+@onready var heart_nodes: Array = _hearts.get_children()
 
 var movementState := "idle"
 var lastMovementState := "idle"
@@ -65,6 +74,38 @@ func _unhandled_input(event):
 	)
 	if is_camera_motion:
 		_camera_input_direction = event.screen_relative * mouse_sensitivity
+
+func _update_hearts():
+	var hp := int(clamp(health, 0.0, max_health))
+	for i in heart_nodes.size():
+		heart_nodes[i].visible = (i<health)
+
+func take_damage(dmg, kb = Vector3.ZERO):
+	if iFrameClock > 0.0:
+		return
+	var before := health
+	health = max(health - dmg, 0.0)
+	if health != before:
+		_update_hearts()
+	iFrameClock = iFrameTime
+	healthRegenClock = regen_delay
+	if kb != Vector3.ZERO:
+		velocity += kb
+	if health <= 0.0:
+		die()
+
+func heal():
+	var before := health
+	health = min(health + 1, max_health)
+	if health != before:
+		_update_hearts()
+
+func die():
+	print("u die")
+	velocity = Vector3.ZERO
+
+func _ready():
+	_update_hearts()
 
 func _physics_process(delta):
 	_camera_pivot.rotation.x -= _camera_input_direction.y * delta
@@ -180,3 +221,20 @@ func _physics_process(delta):
 
 	_camera_pivot.global_position = lerp(_last_cam_pos, global_transform.origin + Vector3(0,0.5,0), 0.25)
 	_last_cam_pos = _camera_pivot.global_position
+	
+	if iFrameClock > 0.0:
+		iFrameClock = max(iFrameClock - delta, 0.0)
+	
+	if iFrameClock <= 0.0:
+		if healthRegenClock > 0.0:
+			healthRegenClock = max(healthRegenClock - delta, 0.0)
+		elif health < max_health:
+			var before := health
+			health = min(health + regen_rate * delta, max_health)
+			if health != before:
+				_update_hearts()
+	
+	if iFrameClock > 0.0 and (int(Time.get_unix_time_from_system()) / 80) % 2 == 0:
+		_skin.modulate.a = 0.6
+	else:
+		_skin.modulate.a = 1.0
