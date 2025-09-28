@@ -1,5 +1,6 @@
-[gd_scene load_steps=37 format=3 uid="uid://cuo14jp7dr5wr"]
+[gd_scene load_steps=41 format=3 uid="uid://cuo14jp7dr5wr"]
 
+[ext_resource type="Texture2D" uid="uid://ca1ue5ap7ejsm" path="res://blankSlateDemoAssets/MiscTextures/floor for catle lvl.png" id="1_a4or1"]
 [ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_mlv2m"]
 [ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_jhhr8"]
 [ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_8ve3c"]
@@ -13,9 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://bmjrhsies3q0l" path="res://blankSlateDemoAssets/MiscTextures/brick wall.webp" id="7_wya21"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wya21"]
-sky_top_color = Color(0.25959867, 0.34193274, 1, 1)
-sky_horizon_color = Color(0.7574294, 0.5264585, 1, 1)
-sky_curve = 0.18467169
+sky_top_color = Color(3.4357727, 0, 4.2840943, 1)
+sky_horizon_color = Color(0, 0, 1, 1)
+sky_curve = 14.550875
+sun_angle_max = 0.0
 
 [sub_resource type="Sky" id="Sky_e2o6t"]
 sky_material = SubResource("ProceduralSkyMaterial_wya21")
@@ -26,7 +28,11 @@ sky = SubResource("Sky_e2o6t")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a4or1"]
+albedo_texture = ExtResource("1_a4or1")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_80nbo"]
+material = SubResource("StandardMaterial3D_a4or1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80nbo"]
 albedo_color = Color(0, 1, 0.462745, 1)
@@ -95,6 +101,13 @@ material = SubResource("StandardMaterial3D_bidtl")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fvv57"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tm5b3"]
+albedo_texture = ExtResource("1_a4or1")
+uv1_scale = Vector3(12.94, 12.94, 12.94)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gs5fi"]
+material = SubResource("StandardMaterial3D_tm5b3")
+
 [node name="Game" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -105,7 +118,8 @@ shadow_enabled = true
 environment = SubResource("Environment_feb5d")
 
 [node name="floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(10000.05, 0, 0, 0, 50, 0, 0, 0, 10000, 0.0058606863, 0, -0.003201723)
+transform = Transform3D(10000.041, 0.061759725, -2.9285092, -12.351094, 49.999954, 3.1955793, 2.9323664, -0.01596027, 9999.999, 0.0058606863, 0, -0.003201723)
+visible = false
 layers = 2
 mesh = SubResource("PlaneMesh_80nbo")
 surface_material_override/0 = SubResource("StandardMaterial3D_80nbo")
@@ -305,17 +319,6 @@ shape = SubResource("ConvexPolygonShape3D_8ve3c")
 
 [node name="Floating platdforms" type="Node" parent="."]
 
-[node name="Floating palatform" type="MeshInstance3D" parent="Floating platdforms"]
-transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, 36.536564, -530, 0)
-layers = 2
-mesh = SubResource("BoxMesh_fjc8e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floating platdforms/Floating palatform"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_fvv57")
-
 [node name="Floating palatform13" type="MeshInstance3D" parent="Floating platdforms"]
 transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, -38.229786, -527.8447, -29.498453)
 layers = 2
@@ -404,39 +407,6 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform20/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fvv57")
 
-[node name="Floating palatform21" type="MeshInstance3D" parent="Floating platdforms"]
-transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, 36.536564, -530, 0)
-layers = 2
-mesh = SubResource("BoxMesh_fjc8e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floating platdforms/Floating palatform21"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform21/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_fvv57")
-
-[node name="Floating palatform22" type="MeshInstance3D" parent="Floating platdforms"]
-transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, 36.536564, -530, 0)
-layers = 2
-mesh = SubResource("BoxMesh_fjc8e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floating platdforms/Floating palatform22"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform22/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_fvv57")
-
-[node name="Floating palatform23" type="MeshInstance3D" parent="Floating platdforms"]
-transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, 36.536564, -530, 0)
-layers = 2
-mesh = SubResource("BoxMesh_fjc8e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floating platdforms/Floating palatform23"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform23/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_fvv57")
-
 [node name="Floating palatform24" type="MeshInstance3D" parent="Floating platdforms"]
 transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, 42.943165, -525.32904, 23.06254)
 layers = 2
@@ -468,28 +438,6 @@ mesh = SubResource("BoxMesh_fjc8e")
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform26/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_fvv57")
-
-[node name="Floating palatform27" type="MeshInstance3D" parent="Floating platdforms"]
-transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, 36.536564, -530, 0)
-layers = 2
-mesh = SubResource("BoxMesh_fjc8e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floating platdforms/Floating palatform27"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform27/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_fvv57")
-
-[node name="Floating palatform28" type="MeshInstance3D" parent="Floating platdforms"]
-transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, 36.536564, -530, 0)
-layers = 2
-mesh = SubResource("BoxMesh_fjc8e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floating platdforms/Floating palatform28"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform28/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fvv57")
 
 [node name="Floating palatform29" type="MeshInstance3D" parent="Floating platdforms"]
@@ -567,17 +515,6 @@ mesh = SubResource("BoxMesh_fjc8e")
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform7/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_fvv57")
-
-[node name="Floating palatform8" type="MeshInstance3D" parent="Floating platdforms"]
-transform = Transform3D(7, 0, 0, 0, 2.8, 0, 0, 0, 7, 36.536564, -530, 0)
-layers = 2
-mesh = SubResource("BoxMesh_fjc8e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floating platdforms/Floating palatform8"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floating platdforms/Floating palatform8/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fvv57")
 
 [node name="Floating palatform9" type="MeshInstance3D" parent="Floating platdforms"]
@@ -666,3 +603,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4499197, -522.52924, 22.706
 
 [node name="EnergyCrystal3" parent="Iner Mobility" instance=ExtResource("2_jhhr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.514246, -521.05426, 12.300619)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2000, 0, 0, 0, 1, 0, 0, 0, 2000, 0, 0, 0)
+layers = 2
+mesh = SubResource("PlaneMesh_gs5fi")

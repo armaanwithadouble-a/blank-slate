@@ -1,12 +1,15 @@
-[gd_scene load_steps=20 format=4 uid="uid://72w56dbma6de"]
+[gd_scene load_steps=23 format=4 uid="uid://72w56dbma6de"]
 
 [ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_0xeif"]
+[ext_resource type="Texture2D" uid="uid://c1aftihaihwpw" path="res://blankSlateDemoAssets/MiscTextures/floor for totorial.webp" id="2_e312d"]
 [ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_gdvy0"]
+[ext_resource type="Texture2D" uid="uid://d1dtkl0l5p341" path="res://blankSlateDemoAssets/MiscTextures/walls for toutorial.webp" id="2_mscth"]
 [ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_hga2d"]
 [ext_resource type="PackedScene" uid="uid://eims7t5kchuu" path="res://Prefabs/Elevator.tscn" id="4_gdvy0"]
 [ext_resource type="PackedScene" uid="uid://cgxcbaglfab7h" path="res://DefaultPrefabs/Health.tscn" id="5_hga2d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
+sky_top_color = Color(0.46583652, 0.5400749, 0.6391363, 1)
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
@@ -33,11 +36,16 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e2o6t"]
 points = PackedVector3Array(1.00794, -0.007893, -1.00774, 0.0239036, 1.00784, 0.00773764, 0.0239036, 1.00784, -1.00774, 0, 0.00012025, -0.000175753, 1.00794, 0.0238237, 0.00773764, 0, 0.00012025, -0.999824, 0, 0.999922, -0.000175753, 1.00794, -0.007893, 0.00773764, 1.00794, 0.0238237, -1.00774, 0, 0.999922, -0.999824, 0.626992, 0.404822, -1.00774, 0.626992, 0.404822, 0.00773764)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0mkc"]
+albedo_texture = ExtResource("2_e312d")
+uv1_scale = Vector3(1, 2.21, 1)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_feb5d"]
 _surfaces = [{
 "aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
 "attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
 "format": 34359738391,
+"material": SubResource("StandardMaterial3D_j0mkc"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -48,6 +56,8 @@ _surfaces = [{
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mscth"]
+albedo_texture = ExtResource("2_mscth")
+uv1_scale = Vector3(3.17, 1, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7jktm"]
 _surfaces = [{
@@ -136,18 +146,6 @@ collision_layer = 2
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
 [node name="Jump platform" type="Node" parent="."]
-
-[node name="wall 1" type="MeshInstance3D" parent="Jump platform"]
-transform = Transform3D(12.5, 0, 0, 0, 8, 0, 0, 0, 0.25, 50, 4, -7.5)
-layers = 2
-mesh = SubResource("ArrayMesh_7jktm")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Jump platform/wall 1"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Jump platform/wall 1/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ryrav")
 
 [node name="Floor" type="MeshInstance3D" parent="Jump platform"]
 transform = Transform3D(12.5, 0, 0, 0, 0.5, 0, 0, 0, 15, 50, 0, 0)
