@@ -9,7 +9,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xecj"]
 transparency = 1
 blend_mode = 1
-albedo_color = Color(1, 0.282353, 0.219608, 1)
+albedo_color = Color(0.77219796, 0.77437025, 0.4253001, 1)
 
 [node name="Elevator" type="Area3D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

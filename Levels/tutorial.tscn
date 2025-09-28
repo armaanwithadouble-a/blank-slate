@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://72w56dbma6de"]
+[gd_scene load_steps=18 format=4 uid="uid://72w56dbma6de"]
 
 [ext_resource type="PackedScene" uid="uid://dt23fmgnisj7e" path="res://Prefabs/player.tscn" id="1_0xeif"]
 [ext_resource type="PackedScene" uid="uid://ccqgw0nb8m5ba" path="res://Prefabs/EnergyCrystal.tscn" id="2_gdvy0"]
 [ext_resource type="PackedScene" uid="uid://clugnaaseflrc" path="res://Prefabs/Balloon.tscn" id="3_hga2d"]
+[ext_resource type="PackedScene" uid="uid://eims7t5kchuu" path="res://Prefabs/Elevator.tscn" id="4_gdvy0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,14 +17,6 @@ background_mode = 2
 sky = SubResource("Sky_e2o6t")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_wmo6t"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80nbo"]
-albedo_color = Color(0, 1, 0.462745, 1)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mwb40"]
-data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_80nbo"]
 _surfaces = [{
@@ -53,11 +46,14 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fc0e3"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mscth"]
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_7jktm"]
 _surfaces = [{
 "aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
 "attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
 "format": 34359738391,
+"material": SubResource("StandardMaterial3D_mscth"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -67,6 +63,15 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ryrav"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gdvy0"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hga2d"]
+material = SubResource("StandardMaterial3D_gdvy0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hga2d"]
+albedo_color = Color(0, 1, 0, 1)
+
 [node name="Game" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -75,19 +80,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_feb5d")
-
-[node name="floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(15, 0, 0, 0, 20, 0, 0, 0, 10, 11.931968, 0, 0.0068979263)
-visible = false
-layers = 2
-mesh = SubResource("PlaneMesh_wmo6t")
-surface_material_override/0 = SubResource("StandardMaterial3D_80nbo")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_mwb40")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_0xeif")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -115,7 +107,7 @@ collision_layer = 2
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
 [node name="wall2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 8, 0, 0, 0, 15, -2.1734066, 3.765, 0)
+transform = Transform3D(0.5, 0, 0, 0, 15, 0, 0, 0, 15, -2.173, 7.5, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_7jktm")
 
@@ -126,18 +118,6 @@ collision_layer = 2
 shape = SubResource("ConvexPolygonShape3D_ryrav")
 
 [node name="Starting Platform" type="Node" parent="."]
-
-[node name="wall 1" type="MeshInstance3D" parent="Starting Platform"]
-transform = Transform3D(25, 0, 0, 0, 8, 0, 0, 0, 0.5, 10, 3.765, -7.5)
-layers = 2
-mesh = SubResource("ArrayMesh_7jktm")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Starting Platform/wall 1"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Starting Platform/wall 1/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ryrav")
 
 [node name="Floor" type="MeshInstance3D" parent="Starting Platform"]
 transform = Transform3D(25, 0, 0, 0, 0.5, 0, 0, 0, 15, 10, 0, 0)
@@ -150,18 +130,6 @@ collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Starting Platform/Floor/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
-
-[node name="wall 3" type="MeshInstance3D" parent="Starting Platform"]
-transform = Transform3D(25, 0, 0, 0, 8, 0, 0, 0, 0.5, 10, 3.765, 7.5)
-layers = 2
-mesh = SubResource("ArrayMesh_7jktm")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Starting Platform/wall 3"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Starting Platform/wall 3/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ryrav")
 
 [node name="Jump platform" type="Node" parent="."]
 
@@ -190,7 +158,7 @@ collision_layer = 2
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
 [node name="wall 3" type="MeshInstance3D" parent="Jump platform"]
-transform = Transform3D(12.5, 0, 0, 0, 8, 0, 0, 0, 0.25, 50, 4, 7.5)
+transform = Transform3D(170, 0, 0, 0, 15, 0, 0, 0, 0.25, 82.5, 7.5, 7.5)
 layers = 2
 mesh = SubResource("ArrayMesh_7jktm")
 skeleton = NodePath("../..")
@@ -215,7 +183,7 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 [node name="Double Jump platform" type="Node" parent="."]
 
 [node name="wall 1" type="MeshInstance3D" parent="Double Jump platform"]
-transform = Transform3D(12.5, 0, 0, 0, 8, 0, 0, 0, 0.25, 105, 4, -7.5)
+transform = Transform3D(185, 0, 0, 0, 15, 0, 0, 0, 0.25, 90, 7.5, -7.5)
 layers = 2
 mesh = SubResource("ArrayMesh_7jktm")
 skeleton = NodePath("../..")
@@ -238,18 +206,6 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Double Jump platform/Floor/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
-[node name="wall 3" type="MeshInstance3D" parent="Double Jump platform"]
-transform = Transform3D(12.5, 0, 0, 0, 8, 0, 0, 0, 0.25, 105, 4, 7.5)
-layers = 2
-mesh = SubResource("ArrayMesh_7jktm")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Double Jump platform/wall 3"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Double Jump platform/wall 3/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ryrav")
-
 [node name="box" type="MeshInstance3D" parent="Double Jump platform"]
 transform = Transform3D(0.5, 0, 0, 0, 1.5, 0, 0, 0, 7.5, 105, 0.8970673, 0)
 layers = 2
@@ -263,18 +219,6 @@ shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
 [node name="Double Jump Dash" type="Node" parent="."]
 
-[node name="wall 1" type="MeshInstance3D" parent="Double Jump Dash"]
-transform = Transform3D(15, 0, 0, 0, 8, 0, 0, 0, 0.25, 175, 4, -7.5)
-layers = 2
-mesh = SubResource("ArrayMesh_7jktm")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Double Jump Dash/wall 1"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Double Jump Dash/wall 1/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ryrav")
-
 [node name="Floor" type="MeshInstance3D" parent="Double Jump Dash"]
 transform = Transform3D(15, 0, 0, 0, 0.5, 0, 0, 0, 15, 175, 0, 0)
 layers = 2
@@ -286,18 +230,6 @@ collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Double Jump Dash/Floor/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
-
-[node name="wall 3" type="MeshInstance3D" parent="Double Jump Dash"]
-transform = Transform3D(0.25, 0, 0, 0, 8, 0, 0, 0, 15, 182.5, 4, 0)
-layers = 2
-mesh = SubResource("ArrayMesh_7jktm")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Double Jump Dash/wall 3"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Double Jump Dash/wall 3/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ryrav")
 
 [node name="crystal dash" type="Node" parent="."]
 
@@ -314,7 +246,7 @@ collision_layer = 2
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
 [node name="wall 3" type="MeshInstance3D" parent="crystal dash"]
-transform = Transform3D(0.25, 0, 0, 0, 8, 0, 0, 0, 180, 182.5, 4, 89)
+transform = Transform3D(0.25, 0, 0, 0, 15, 0, 0, 0, 380, 182.5, 7.5, 182.5)
 layers = 2
 mesh = SubResource("ArrayMesh_7jktm")
 skeleton = NodePath("../..")
@@ -326,7 +258,7 @@ collision_layer = 2
 shape = SubResource("ConvexPolygonShape3D_ryrav")
 
 [node name="wall 4" type="MeshInstance3D" parent="crystal dash"]
-transform = Transform3D(0.25, 0, 0, 0, 8, 0, 0, 0, 170, 167.5, 4, 92.5)
+transform = Transform3D(0.25, 0, 0, 0, 15, 0, 0, 0, 365, 167.5, 7.5, 190)
 layers = 2
 mesh = SubResource("ArrayMesh_7jktm")
 skeleton = NodePath("../..")
@@ -348,57 +280,201 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="crystal dash/box/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
-[node name="EnergyCrystal" parent="." instance=ExtResource("2_gdvy0")]
+[node name="EnergyCrystal" parent="crystal dash" instance=ExtResource("2_gdvy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 5.25, 47.5)
 
-[node name="crystal dash2" type="Node" parent="."]
+[node name="Ballon" type="Node" parent="."]
 
-[node name="Floor" type="MeshInstance3D" parent="crystal dash2"]
+[node name="Floor" type="MeshInstance3D" parent="Ballon"]
 transform = Transform3D(15, 0, 0, 0, 0.5, 0, 0, 0, 15, 175, 0, 185)
 layers = 2
 mesh = SubResource("ArrayMesh_feb5d")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="crystal dash2/Floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Ballon/Floor"]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="crystal dash2/Floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ballon/Floor/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
-[node name="wall 3" type="MeshInstance3D" parent="crystal dash2"]
-transform = Transform3D(0.25, 0, 0, 0, 8, 0, 0, 0, 15, 182.5, 4, 185)
-layers = 2
-mesh = SubResource("ArrayMesh_7jktm")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="crystal dash2/wall 3"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="crystal dash2/wall 3/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ryrav")
-
-[node name="wall 4" type="MeshInstance3D" parent="crystal dash2"]
-transform = Transform3D(0.25, 0, 0, 0, 8, 0, 0, 0, 15, 167.5, 4, 185)
-layers = 2
-mesh = SubResource("ArrayMesh_7jktm")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="crystal dash2/wall 4"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="crystal dash2/wall 4/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ryrav")
-
-[node name="box" type="MeshInstance3D" parent="crystal dash2"]
+[node name="box" type="MeshInstance3D" parent="Ballon"]
 transform = Transform3D(7.5, 0, 0, 0, 1.5, 0, 0, 0, 0.5, 175, 0.897, 185)
 layers = 2
 mesh = SubResource("ArrayMesh_feb5d")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="crystal dash2/box"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Ballon/box"]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="crystal dash2/box/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ballon/box/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_fc0e3")
 
-[node name="Balloon" parent="." instance=ExtResource("3_hga2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 0, 135)
+[node name="Balloon" parent="Ballon" instance=ExtResource("3_hga2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175, 5.25, 135)
+
+[node name="Elevator" type="Node" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Elevator"]
+transform = Transform3D(15, 0, 0, 0, 0.5, 0, 0, 0, 115, 175, 0, 315)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Elevator/Floor"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/Floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="Elevator2" parent="Elevator" instance=ExtResource("4_gdvy0")]
+transform = Transform3D(5, 0, 0, 0, 3.535534, -3.535534, 0, 3.535534, 3.535534, 175, 5, 194.37685)
+force = 5.0
+
+[node name="Dumy_Dummy" type="MeshInstance3D" parent="Elevator"]
+transform = Transform3D(3.5, 0, 0, 0, 7, 0, 0, 0, 3.5, 175, 2.825, 290)
+layers = 2
+mesh = SubResource("SphereMesh_hga2d")
+skeleton = NodePath("../..")
+
+[node name="Boss Arena" type="Node" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(200, 0, 0, 0, 0.5, 0, 0, 0, 200, 175, 0, 472.5)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/Floor"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/Floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 207.554, 6, 470)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform2" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 177.46211, 18.124928, 470)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform2"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform3" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 184.19049, 6, 514.89185)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform3"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform4" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 117.564835, 13.280041, 519.9575)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform4"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform5" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 150.10086, 30.080189, 448.27048)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform5"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform6" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 228.77417, 6, 405.05823)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform6"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform6/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform7" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 234.03587, 11.912338, 522.83856)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform7"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform7/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform8" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 137.81683, 17.843723, 397.5871)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform8"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform8/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform9" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 164.87653, 42.119736, 416.6766)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform9"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform9/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
+
+[node name="boss platform10" type="MeshInstance3D" parent="Boss Arena"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 189.0092, 52.393394, 434.83844)
+layers = 2
+mesh = SubResource("ArrayMesh_feb5d")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hga2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss Arena/boss platform10"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss Arena/boss platform10/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fc0e3")
